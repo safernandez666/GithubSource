@@ -30,11 +30,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest, ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-      - 
-        name: Dispatch Event
-        uses: guilouro/multiple-repositories-dispatch@v1
+      - name: Repository Dispatch
+        uses: myrotvorets/trigger-repository-dispatch-action@1.0.0
         with:
-          repo_token: ${{ secrets.PAT }}
-          event_type: event_name
-          repositories: safernandez666/GithubGitOps
-          client_payload: '{"github": ${{ github.sha }}}'
+          token: ${{ secrets.PAT }}
+          repo: safernandez666/GithubGitOps
+          type: my-custom-event
+          payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}" }'
