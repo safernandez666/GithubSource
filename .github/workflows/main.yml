@@ -27,3 +27,4 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
+          tag_with_sha: true
