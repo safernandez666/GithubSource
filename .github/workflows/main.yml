@@ -28,12 +28,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest, ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest, ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Repository Dispatch
         uses: myrotvorets/trigger-repository-dispatch-action@1.0.0
         with:
           token: ${{ secrets.PAT }}
           repo: safernandez666/GithubGitOps
-          type: my-custom-event
-          payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}" }'
+          type: new-image
+          payload: '{"image": "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}'
