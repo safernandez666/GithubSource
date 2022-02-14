@@ -34,6 +34,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PAT }}
-          repository: ${{ github.actor }}/argocd-node-app-config
-          event-type: new-image
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/GithubGitOps.git # Repository with the GitOps
+          event-type: new-image # Event type to trigger
           client-payload: '{"image": "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"}'
