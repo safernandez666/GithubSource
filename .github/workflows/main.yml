@@ -29,10 +29,12 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest, ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-      
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
+
+      - 
+        name: Dispatch Event
+        uses: guilouro/multiple-repositories-dispatch@v1
         with:
-          token: ${{ secrets.PAT }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/GithubGitOps
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          repo_token: ${{ secrets.PAT }}
+          event_type: event_name
+          repositories: safernandez666/GitHubGitOps
+          client_payload: '{"github": ${{ toJson(github) }}}'
