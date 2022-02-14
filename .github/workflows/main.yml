@@ -8,7 +8,7 @@ env:
   IMAGE_NAME: app
   
 jobs:
-  Build & Push:
+  Build-Push:
     runs-on: ubuntu-latest
     steps:
       -
