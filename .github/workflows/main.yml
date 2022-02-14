@@ -36,5 +36,5 @@ jobs:
         with:
           repo_token: ${{ secrets.PAT }}
           event_type: event_name
-          repositories: safernandez666/GitHubGitOps
-          client_payload: '{"github": ${{ toJson(github) }}}'
+          repositories: safernandez666/GithubGitOps
+          client_payload: '{"github": ${{ github.sha }}}'
