@@ -34,6 +34,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PAT }}
-          repository: https://github.com/safernandez666/GithubGitOps.git # Repository with the GitOps
-          event-type: new-image # Event type to trigger
-          client-payload: '{"image": "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"}'
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/GithubGitOps
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
