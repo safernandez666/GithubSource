@@ -36,4 +36,4 @@ jobs:
           token: ${{ secrets.PAT }}
           repo: safernandez666/GithubGitOps
           type: new-image
-          payload: '{"image": "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"}'
+          payload: '{"image": "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"}'
